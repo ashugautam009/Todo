@@ -4,6 +4,7 @@ import './App.css'
 import fakedata from './data/data.js'
 function App() {
   //state for hold the data 
+  const[title,Settitle]=useState('')
   const [data,setData]=useState([])
   console.log(data)
 
@@ -20,9 +21,29 @@ function App() {
     })
     setData(filterDeleteItem)
   }
+
+  //Add
+  function handleAdd(){
+    
+    
+    const payload={
+      completed:Math.random()*100>50?true:false,
+      id:crypto.randomUUID(),//This will create a unique id
+      title:title
+    }
+
+    console.log(payload)
+
+    
+    setData([...data, payload]);
+    
+  }
   return (
     <div>
        {/*<h1>Todo App  </h1>*/}
+       <label htmlFor='title'>Title </label>
+       <input value={title} type='text' id='title' onChange={(e)=>Settitle(e.target.value)}></input>
+       <button onClick={()=>handleAdd()}>Add</button>
         <table>
           <thead>
             <tr>
