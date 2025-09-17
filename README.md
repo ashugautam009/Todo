@@ -12,6 +12,10 @@ o	When marked complete, the task should visually change (e.g., strike-through or
 4.	Delete Task
 o	Each task should have a delete button.
 o	Clicking delete removes the task from the list.
+
+
+/******* Now below is Optional We will consider this in upcoming Days***/ 
+
 5.	Edit Task (optional, if you want extra challenge)
 o	User can edit the text of a task after adding it.
 6.	Persistence (optional advanced)
