@@ -14,7 +14,7 @@ function App() {
   },[])
 
 
-  //Delete 
+  //Delete function
   function handleDelete(id){
     const filterDeleteItem=data.filter((check)=>{
       return check.id!==id
@@ -22,7 +22,7 @@ function App() {
     setData(filterDeleteItem)
   }
 
-  //Add
+  //Add function 
   function handleAdd(){
     
     
@@ -36,7 +36,27 @@ function App() {
 
     
     setData([...data, payload]);
+    Settitle('')  //Empty the Input Box
+  }
+
+  //handle cut if task havinf status completed or we checkd in 
+  function handleTaskstatus(id){
     
+    //By the help of id we will find which one user Click 
+    const FindChecked=data.map((item)=>{
+      if(item.id==id){
+        return{
+          ...item,
+          completed:!item.completed
+        }
+      }
+      return item
+    })
+    console.log('updated FindChecked',FindChecked)
+    
+
+    //Update the State so ui will render again
+    setData(FindChecked)
   }
   return (
     <div>
@@ -47,6 +67,7 @@ function App() {
         <table>
           <thead>
             <tr>
+              <th>Status</th>
               <th>SR.</th>
               <th>Title.</th>
               <th>Action.</th>
@@ -56,8 +77,10 @@ function App() {
               {data.map((check,index)=>{
                 return(
                   <tr key={check.id}>
+                    <input type='checkbox' onChange={()=>handleTaskstatus(check.id)}/>
                     <td>{index+1}</td>
-                    <td>{check.title}</td>
+                    {check.completed?<s><td>{check.title}</td></s>:<td>{check.title}</td>}
+                    
                     <button onClick={()=>handleDelete(check.id)}>Delete</button>
                   </tr>
                 )
